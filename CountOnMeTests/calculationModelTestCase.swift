@@ -8,6 +8,6 @@
 import XCTest
 @testable import CountOnMe
 
-class CountOnMeTests: XCTestCase {
+class CalculationModelTestCase: XCTestCase {
 
 }
