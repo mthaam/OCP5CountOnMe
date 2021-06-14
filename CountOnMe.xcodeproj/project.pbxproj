@@ -13,8 +13,9 @@
 		861483322677C82B00BE00E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 861483302677C82B00BE00E6 /* Main.storyboard */; };
 		861483342677C82C00BE00E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 861483332677C82C00BE00E6 /* Assets.xcassets */; };
 		861483372677C82C00BE00E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 861483352677C82C00BE00E6 /* LaunchScreen.storyboard */; };
-		861483422677C82C00BE00E6 /* CountOnMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861483412677C82C00BE00E6 /* CountOnMeTests.swift */; };
+		861483422677C82C00BE00E6 /* calculationModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861483412677C82C00BE00E6 /* calculationModelTestCase.swift */; };
 		8614834D2677C82C00BE00E6 /* CountOnMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614834C2677C82C00BE00E6 /* CountOnMeUITests.swift */; };
+		861483602677D9C900BE00E6 /* calculationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614835F2677D9C900BE00E6 /* calculationModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,11 +45,12 @@
 		861483362677C82C00BE00E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		861483382677C82C00BE00E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8614833D2677C82C00BE00E6 /* CountOnMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountOnMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		861483412677C82C00BE00E6 /* CountOnMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountOnMeTests.swift; sourceTree = "<group>"; };
+		861483412677C82C00BE00E6 /* calculationModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calculationModelTestCase.swift; sourceTree = "<group>"; };
 		861483432677C82C00BE00E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		861483482677C82C00BE00E6 /* CountOnMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountOnMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8614834C2677C82C00BE00E6 /* CountOnMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountOnMeUITests.swift; sourceTree = "<group>"; };
 		8614834E2677C82C00BE00E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8614835F2677D9C900BE00E6 /* calculationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calculationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,12 +101,11 @@
 		861483292677C82B00BE00E6 /* CountOnMe */ = {
 			isa = PBXGroup;
 			children = (
-				8614832A2677C82B00BE00E6 /* AppDelegate.swift */,
-				8614832C2677C82B00BE00E6 /* SceneDelegate.swift */,
-				8614832E2677C82B00BE00E6 /* ViewController.swift */,
-				861483302677C82B00BE00E6 /* Main.storyboard */,
-				861483332677C82C00BE00E6 /* Assets.xcassets */,
-				861483352677C82C00BE00E6 /* LaunchScreen.storyboard */,
+				861483612677D9FE00BE00E6 /* Model */,
+				8614835A2677D39000BE00E6 /* View */,
+				8614835C2677D3AC00BE00E6 /* Controller */,
+				8614835B2677D3A100BE00E6 /* Delegates */,
+				8614835D2677D43200BE00E6 /* Assets */,
 				861483382677C82C00BE00E6 /* Info.plist */,
 			);
 			path = CountOnMe;
@@ -113,7 +114,7 @@
 		861483402677C82C00BE00E6 /* CountOnMeTests */ = {
 			isa = PBXGroup;
 			children = (
-				861483412677C82C00BE00E6 /* CountOnMeTests.swift */,
+				861483412677C82C00BE00E6 /* calculationModelTestCase.swift */,
 				861483432677C82C00BE00E6 /* Info.plist */,
 			);
 			path = CountOnMeTests;
@@ -128,6 +129,48 @@
 			path = CountOnMeUITests;
 			sourceTree = "<group>";
 		};
+		8614835A2677D39000BE00E6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				861483302677C82B00BE00E6 /* Main.storyboard */,
+				861483352677C82C00BE00E6 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8614835B2677D3A100BE00E6 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				8614832A2677C82B00BE00E6 /* AppDelegate.swift */,
+				8614832C2677C82B00BE00E6 /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		8614835C2677D3AC00BE00E6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8614832E2677C82B00BE00E6 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8614835D2677D43200BE00E6 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				861483332677C82C00BE00E6 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		861483612677D9FE00BE00E6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8614835F2677D9C900BE00E6 /* calculationModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,6 +181,7 @@
 				861483232677C82B00BE00E6 /* Sources */,
 				861483242677C82B00BE00E6 /* Frameworks */,
 				861483252677C82B00BE00E6 /* Resources */,
+				8614835E2677D7F800BE00E6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -253,12 +297,33 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8614835E2677D7F800BE00E6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		861483232677C82B00BE00E6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				8614832F2677C82B00BE00E6 /* ViewController.swift in Sources */,
+				861483602677D9C900BE00E6 /* calculationModel.swift in Sources */,
 				8614832B2677C82B00BE00E6 /* AppDelegate.swift in Sources */,
 				8614832D2677C82B00BE00E6 /* SceneDelegate.swift in Sources */,
 			);
@@ -268,7 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				861483422677C82C00BE00E6 /* CountOnMeTests.swift in Sources */,
+				861483422677C82C00BE00E6 /* calculationModelTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
