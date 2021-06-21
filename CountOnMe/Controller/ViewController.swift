@@ -11,7 +11,7 @@ class ViewController: UIViewController {
 
     // MARK: - Properties
 
-    let calculation = CalculationModel()
+    let calculation = TreatmentModel()
 
     // MARK: - Lifecycle
 
@@ -20,6 +20,8 @@ class ViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(displayCalculationResult(notification:)),
                                                name: Notification.Name("updateDisplay"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(displayAlert(notification:)),
+                                               name: Notification.Name("alertDisplay"), object: nil)
     }
 
     // MARK: - @IBOutlets
@@ -27,10 +29,16 @@ class ViewController: UIViewController {
     @IBOutlet var numberButtons: [UIButton]!
     @IBOutlet weak var textView: UITextView!
 
-    // MARK: - @objC functions
+    // MARK: - @objC Functions
     @objc func displayCalculationResult(notification: Notification) {
         guard let userInfo = notification.userInfo else { return }
         textView.text = userInfo["updateDisplay"] as? String
+    }
+
+    @objc func displayAlert(notification: Notification) {
+        guard let userInfo = notification.userInfo else { return }
+        guard let errorMessage = userInfo["message"] as? String else { return }
+        createAlert(message: errorMessage)
     }
 
     // MARK: - @IBActions
@@ -45,7 +53,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func equalButtonTapped(_ sender: UIButton) {
-        calculation.equalButtonTapped()
+        calculation.calculate()
     }
 
     @IBAction func plusButtonTapped(_ sender: UIButton) {
@@ -62,5 +70,14 @@ class ViewController: UIViewController {
 
     @IBAction func dividedButtonTapped(_ sender: UIButton) {
         calculation.divideButtonTapped()
+    }
+
+    // MARK: - Private functions
+
+    /// This function presents an alert to the user.
+    private func createAlert(message: String) {
+        let alertViewController = UIAlertController(title: "Alert!", message: message, preferredStyle: UIAlertController.Style.alert)
+        alertViewController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertViewController, animated: true, completion: nil)
     }
 }
