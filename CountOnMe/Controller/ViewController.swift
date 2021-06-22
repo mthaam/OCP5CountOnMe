@@ -13,6 +13,11 @@ class ViewController: UIViewController {
 
     let calculation = TreatmentModel()
 
+    // MARK: - @IBOutlets
+
+    @IBOutlet var numberButtons: [UIButton]!
+    @IBOutlet weak var textView: UITextView!
+
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -22,12 +27,9 @@ class ViewController: UIViewController {
                                                name: Notification.Name("updateDisplay"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(displayAlert(notification:)),
                                                name: Notification.Name("alertDisplay"), object: nil)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
+        textView.addGestureRecognizer(tapGesture)
     }
-
-    // MARK: - @IBOutlets
-
-    @IBOutlet var numberButtons: [UIButton]!
-    @IBOutlet weak var textView: UITextView!
 
     // MARK: - @objC Functions
     @objc func displayCalculationResult(notification: Notification) {
@@ -39,6 +41,10 @@ class ViewController: UIViewController {
         guard let userInfo = notification.userInfo else { return }
         guard let errorMessage = userInfo["message"] as? String else { return }
         createAlert(message: errorMessage)
+    }
+
+    @objc func handleTapGesture(_ sender: UIPanGestureRecognizer) {
+        calculation.deleteLastEntry()
     }
 
     // MARK: - @IBActions

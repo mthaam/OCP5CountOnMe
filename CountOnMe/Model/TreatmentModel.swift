@@ -12,7 +12,7 @@ class TreatmentModel {
 
     // MARK: - PROPERTIES
 
-    private var inputString: String = "0" {
+    var inputString: String = "0" {
         didSet {
             NotificationCenter.default.post(name: Notification.Name("updateDisplay"),
                                             object: nil, userInfo: ["updateDisplay": inputString])
@@ -20,7 +20,7 @@ class TreatmentModel {
     }
 
     private var elements: [String] {
-        return inputString.components(separatedBy: " ")
+        return inputString.split(separator: " ").map { "\($0)" }
     }
 
     private var priorityOperator: Bool {
@@ -29,19 +29,23 @@ class TreatmentModel {
 
     private var expressionIsCorrect: Bool {
         return elements.last != "+" && elements.last != "-" && elements.last != "/" && elements.last != "x"
-    } // to add
+    }
 
     private var expressionHaveEnoughElement: Bool {
         return elements.count >= 3
-    } // ok
+    }
 
     private var canAddOperator: Bool {
         return elements.last != "+" && elements.last != "-" && elements.last != "/" && elements.last != "x"
-    } // ok
+    }
 
     private var expressionHaveResult: Bool {
         return inputString.firstIndex(of: "=") != nil
-    } // ok
+    }
+
+    private var expressionLastCharIsOperand: Bool {
+        return inputString.last == "+" || inputString.last == "-" || inputString.last == "/" || inputString.last == "x" || inputString.last == " "
+    }
 
     private var firstCalculation: Bool = true
 
@@ -51,7 +55,7 @@ class TreatmentModel {
     /// - Parameter numberText : a string value depending on the button touched up .
     func numberButtonTapped(numberText: String) {
         if expressionHaveResult || firstCalculation {
-            inputString = ""
+            inputString = String()
         }
         firstCalculation = false
         inputString.append(numberText)
@@ -105,6 +109,15 @@ class TreatmentModel {
         inputString = "0"
     }
 
+    func deleteLastEntry() {
+        guard inputString.count >= 1 else { return }
+        if expressionLastCharIsOperand {
+            inputString.removeLast(2)
+        } else {
+            inputString.removeLast()
+        }
+    }
+
     // MARK: - CALCULATION FUNCTION
 
     func calculate() {
@@ -126,7 +139,8 @@ class TreatmentModel {
         resolveNonPriorityCalculations(in: &dynamicResolutionArray)
 
         guard let currentResult = dynamicResolutionArray.first else { return }
-        inputString.append("\(currentResult)")
+
+        inputString.append(" = \(currentResult)")
 
     }
 
@@ -169,7 +183,7 @@ class TreatmentModel {
 
             let operatorPlusOrMinus = dynamicResolutionArray[1]
 
-            let rightOperandStrComma: String = dynamicResolutionArray[0]
+            let rightOperandStrComma: String = dynamicResolutionArray[2]
             let rightOperandStrPoint = rightOperandStrComma.replacingOccurrences(of: ",", with: ".")
             let rightOperandDouble = Double(rightOperandStrPoint)
 
