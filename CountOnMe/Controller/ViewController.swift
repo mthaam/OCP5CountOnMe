@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     // MARK: - Properties
 
     let calculation = TreatmentModel()
+    var textViewLength: Int { textView.text.count}
 
     // MARK: - @IBOutlets
 
@@ -86,6 +87,12 @@ class ViewController: UIViewController {
         alertViewController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertViewController, animated: true, completion: nil)
     }
+
+//    private func updateTextViewFontSize() {
+//        if textViewLength <= 40 {
+//            textView
+//        }
+//    }
 
 }
 

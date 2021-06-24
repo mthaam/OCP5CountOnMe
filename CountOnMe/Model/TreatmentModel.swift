@@ -47,30 +47,8 @@ class TreatmentModel {
         return inputString.last == "+" || inputString.last == "-" || inputString.last == "/" || inputString.last == "x" || inputString.last == " "
     }
 
-    private var expressionContainsADivisionBy02: Bool {
-        var index = 0
-        if let divideIndex = elements.firstIndex(of: "/") {
-            index = divideIndex
-        }
-         return elements.firstIndex(of: "/") != nil && elements[index + 1] == "0"
-    }
-
     private var expressionContainsADivisionBy0: Bool {
          return verifyDivisionByZero2()
-    }
-
-    private func verifyDivisionByZero2() -> Bool {
-        var thereIsADivisionBy0 = false
-        var count = 0
-        for divide in elements {
-            if divide == "/" && elements[count + 1] == "0" {
-//                sendAlertNotification(message: "Division by 0 is not allowed!")
-//                inputString.append(" = Error")
-                thereIsADivisionBy0 = true
-            }
-            count += 1
-        }
-        return thereIsADivisionBy0
     }
 
     private var firstCalculation: Bool = true
@@ -146,7 +124,7 @@ class TreatmentModel {
         }
     }
 
-    // MARK: - CALCULATION FUNCTION
+    // MARK: - MAIN CALCULATION FUNCTION
 
     func calculate() {
         print(elements)
@@ -158,7 +136,7 @@ class TreatmentModel {
             sendAlertNotification(message: "Not enough elements to perform calculation.\nTry again!")
             return
         }
-//        verifyDivisionByZero()
+
         guard expressionContainsADivisionBy0 == false else {
             sendAlertNotification(message: "Division by 0 is not allowed!")
             inputString.append(" = Error")
@@ -240,17 +218,6 @@ class TreatmentModel {
         }
     }
 
-    private func verifyDivisionByZero() {
-        var count = 0
-        for divide in elements {
-            if divide == "/" && elements[count + 1] == "0" {
-//                sendAlertNotification(message: "Division by 0 is not allowed!")
-//                inputString.append(" = Error")
-            }
-            count += 1
-        }
-    }
-
     private func doubleToInteger(from currentResult: Double) -> String {
         let doubleAsString = NumberFormatter.localizedString(from: (NSNumber(value: currentResult)), number: .decimal)
         return doubleAsString
@@ -262,8 +229,16 @@ class TreatmentModel {
         let name = Notification.Name("alertDisplay")
         NotificationCenter.default.post(name: name, object: nil, userInfo: ["message": message])
     }
+
+    private func verifyDivisionByZero2() -> Bool {
+        var thereIsADivisionBy0 = false
+        var count = 0
+        for divide in elements {
+            if divide == "/" && elements[count + 1] == "0" {
+                thereIsADivisionBy0 = true
+            }
+            count += 1
+        }
+        return thereIsADivisionBy0
+    }
 } // end of class TreatmentModel
-
-
-// refactor condition in verifyDiv0
-// add guard noDivisionByZero
