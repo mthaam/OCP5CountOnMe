@@ -47,6 +47,14 @@ class TreatmentModel {
         return inputString.last == "+" || inputString.last == "-" || inputString.last == "/" || inputString.last == "x" || inputString.last == " "
     }
 
+    private var expressionContainsADivisionBy0: Bool {
+        var index = 0
+        if let divideIndex = elements.firstIndex(of: "/") {
+            index = divideIndex
+        }
+         return elements.firstIndex(of: "/") != nil && elements[index + 1] == "0"
+    }
+
     private var firstCalculation: Bool = true
 
     // MARK: - APPENDING NUMBERS AND OPERANDS FUNCTIONS
@@ -54,6 +62,8 @@ class TreatmentModel {
     /// This function appends the calculText property
     /// - Parameter numberText : a string value depending on the button touched up .
     func numberButtonTapped(numberText: String) {
+        print(elements)
+//
         if expressionHaveResult || firstCalculation {
             inputString = String()
         }
@@ -72,16 +82,16 @@ class TreatmentModel {
         if canAddOperator {
             operandSignTapped(operand: " + ")
         } else {
-            sendAlertNotification(message: "You already typed an Operand")
+            sendAlertNotification(notificationName: "alertDisplay", message: "You already typed an Operand")
         }
     }
 
-    /// This function appends the inputText property with a + character
+    /// This function appends the inputText property with a - character
     func minusButtonTapped() {
         if canAddOperator {
             operandSignTapped(operand: " - ")
         } else {
-            sendAlertNotification(message: "You already typed an Operand")
+            sendAlertNotification(notificationName: "alertDisplay", message: "You already typed an Operand")
         }
     }
 
@@ -90,7 +100,7 @@ class TreatmentModel {
         if canAddOperator {
             operandSignTapped(operand: " x ")
         } else {
-            sendAlertNotification(message: "You already typed an Operand")
+            sendAlertNotification(notificationName: "alertDisplay", message: "You already typed an Operand")
         }
     }
 
@@ -99,7 +109,7 @@ class TreatmentModel {
         if canAddOperator {
             operandSignTapped(operand: " / ")
         } else {
-            sendAlertNotification(message: "You already typed an Operand")
+            sendAlertNotification(notificationName: "alertDisplay", message: "You already typed an Operand")
         }
     }
 
@@ -121,15 +131,18 @@ class TreatmentModel {
     // MARK: - CALCULATION FUNCTION
 
     func calculate() {
-
+        print(elements)
         guard expressionIsCorrect else {
-            sendAlertNotification(message: "Please enter a correct expression!")
+            sendAlertNotification(notificationName: "alertDisplay", message: "Please enter a correct expression!")
             return
         }
         guard expressionHaveEnoughElement else {
-            sendAlertNotification(message: "Not enough elements to perform calculation.\nTry again!")
+            sendAlertNotification(notificationName: "alertDisplay", message: "Not enough elements to perform calculation.\nTry again!")
             return
         }
+        verifyDivisionByZero()
+        guard expressionContainsADivisionBy0 == false else { return }
+
         var dynamicResolutionArray = elements
 
         if priorityOperator {
@@ -206,6 +219,17 @@ class TreatmentModel {
         }
     }
 
+    private func verifyDivisionByZero() {
+        var count = 0
+        for divide in elements {
+            if divide == "/" && elements[count + 1] == "0" {
+                sendAlertNotification(notificationName: "divisionBy0", message: "Division by 0 is not allowed!")
+                inputString.append(" = Error")
+            }
+            count += 1
+        }
+    }
+
     private func doubleToInteger(from currentResult: Double) -> String {
         let doubleAsString = NumberFormatter.localizedString(from: (NSNumber(value: currentResult)), number: .decimal)
         return doubleAsString
@@ -213,8 +237,12 @@ class TreatmentModel {
 
     /// This function sends a notification
     /// - Parameter message : a string value describing the problem.
-    private func sendAlertNotification(message: String) {
-        let name = Notification.Name("alertDisplay")
+    private func sendAlertNotification(notificationName: String, message: String) {
+        let name = Notification.Name(notificationName)
         NotificationCenter.default.post(name: name, object: nil, userInfo: ["message": message])
     }
 } // end of class TreatmentModel
+
+// add error in string
+// refactor condition in verifyDiv0
+// add guard noDivisionByZero
