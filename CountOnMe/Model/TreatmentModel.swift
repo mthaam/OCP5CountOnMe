@@ -47,12 +47,30 @@ class TreatmentModel {
         return inputString.last == "+" || inputString.last == "-" || inputString.last == "/" || inputString.last == "x" || inputString.last == " "
     }
 
-    private var expressionContainsADivisionBy0: Bool {
+    private var expressionContainsADivisionBy02: Bool {
         var index = 0
         if let divideIndex = elements.firstIndex(of: "/") {
             index = divideIndex
         }
          return elements.firstIndex(of: "/") != nil && elements[index + 1] == "0"
+    }
+
+    private var expressionContainsADivisionBy0: Bool {
+         return verifyDivisionByZero2()
+    }
+
+    private func verifyDivisionByZero2() -> Bool {
+        var thereIsADivisionBy0 = false
+        var count = 0
+        for divide in elements {
+            if divide == "/" && elements[count + 1] == "0" {
+//                sendAlertNotification(message: "Division by 0 is not allowed!")
+//                inputString.append(" = Error")
+                thereIsADivisionBy0 = true
+            }
+            count += 1
+        }
+        return thereIsADivisionBy0
     }
 
     private var firstCalculation: Bool = true
@@ -82,7 +100,7 @@ class TreatmentModel {
         if canAddOperator {
             operandSignTapped(operand: " + ")
         } else {
-            sendAlertNotification(notificationName: "alertDisplay", message: "You already typed an Operand")
+            sendAlertNotification(message: "You already typed an Operand")
         }
     }
 
@@ -91,7 +109,7 @@ class TreatmentModel {
         if canAddOperator {
             operandSignTapped(operand: " - ")
         } else {
-            sendAlertNotification(notificationName: "alertDisplay", message: "You already typed an Operand")
+            sendAlertNotification(message: "You already typed an Operand")
         }
     }
 
@@ -100,7 +118,7 @@ class TreatmentModel {
         if canAddOperator {
             operandSignTapped(operand: " x ")
         } else {
-            sendAlertNotification(notificationName: "alertDisplay", message: "You already typed an Operand")
+            sendAlertNotification(message: "You already typed an Operand")
         }
     }
 
@@ -109,7 +127,7 @@ class TreatmentModel {
         if canAddOperator {
             operandSignTapped(operand: " / ")
         } else {
-            sendAlertNotification(notificationName: "alertDisplay", message: "You already typed an Operand")
+            sendAlertNotification(message: "You already typed an Operand")
         }
     }
 
@@ -133,15 +151,18 @@ class TreatmentModel {
     func calculate() {
         print(elements)
         guard expressionIsCorrect else {
-            sendAlertNotification(notificationName: "alertDisplay", message: "Please enter a correct expression!")
+            sendAlertNotification(message: "Please enter a correct expression!")
             return
         }
         guard expressionHaveEnoughElement else {
-            sendAlertNotification(notificationName: "alertDisplay", message: "Not enough elements to perform calculation.\nTry again!")
+            sendAlertNotification(message: "Not enough elements to perform calculation.\nTry again!")
             return
         }
-        verifyDivisionByZero()
-        guard expressionContainsADivisionBy0 == false else { return }
+//        verifyDivisionByZero()
+        guard expressionContainsADivisionBy0 == false else {
+            sendAlertNotification(message: "Division by 0 is not allowed!")
+            inputString.append(" = Error")
+            return }
 
         var dynamicResolutionArray = elements
 
@@ -223,8 +244,8 @@ class TreatmentModel {
         var count = 0
         for divide in elements {
             if divide == "/" && elements[count + 1] == "0" {
-                sendAlertNotification(notificationName: "divisionBy0", message: "Division by 0 is not allowed!")
-                inputString.append(" = Error")
+//                sendAlertNotification(message: "Division by 0 is not allowed!")
+//                inputString.append(" = Error")
             }
             count += 1
         }
@@ -237,12 +258,12 @@ class TreatmentModel {
 
     /// This function sends a notification
     /// - Parameter message : a string value describing the problem.
-    private func sendAlertNotification(notificationName: String, message: String) {
-        let name = Notification.Name(notificationName)
+    private func sendAlertNotification(message: String) {
+        let name = Notification.Name("alertDisplay")
         NotificationCenter.default.post(name: name, object: nil, userInfo: ["message": message])
     }
 } // end of class TreatmentModel
 
-// add error in string
+
 // refactor condition in verifyDiv0
 // add guard noDivisionByZero

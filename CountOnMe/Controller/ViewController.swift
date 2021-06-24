@@ -27,9 +27,6 @@ class ViewController: UIViewController {
                                                name: Notification.Name("updateDisplay"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(displayAlert(notification:)),
                                                name: Notification.Name("alertDisplay"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(displayAlert(notification:)),
-                                               name: Notification.Name("divisionBy0"), object: nil)
-
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
         textView.addGestureRecognizer(tapGesture)
     }
@@ -86,9 +83,6 @@ class ViewController: UIViewController {
     /// This function presents an alert to the user.
     private func createAlert(message: String) {
         let alertViewController = UIAlertController(title: "Alert!", message: message, preferredStyle: UIAlertController.Style.alert)
-        if message == "Division by 0 is not allowed!" {
-            alertViewController.addAction(UIAlertAction(title: "Clear expression", style: .destructive, handler: nil))
-        }
         alertViewController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertViewController, animated: true, completion: nil)
     }
