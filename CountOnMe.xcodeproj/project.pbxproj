@@ -13,7 +13,6 @@
 		861483322677C82B00BE00E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 861483302677C82B00BE00E6 /* Main.storyboard */; };
 		861483342677C82C00BE00E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 861483332677C82C00BE00E6 /* Assets.xcassets */; };
 		861483372677C82C00BE00E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 861483352677C82C00BE00E6 /* LaunchScreen.storyboard */; };
-		861483422677C82C00BE00E6 /* calculationModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861483412677C82C00BE00E6 /* calculationModelTestCase.swift */; };
 		8614834D2677C82C00BE00E6 /* CountOnMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614834C2677C82C00BE00E6 /* CountOnMeUITests.swift */; };
 		8632131626824A4A00CA0814 /* TreatmentModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8632131526824A4A00CA0814 /* TreatmentModelTestCase.swift */; };
 		865CAE1D267E756900A757FE /* TreatmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CAE1C267E756900A757FE /* TreatmentModel.swift */; };
@@ -46,7 +45,6 @@
 		861483362677C82C00BE00E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		861483382677C82C00BE00E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8614833D2677C82C00BE00E6 /* CountOnMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountOnMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		861483412677C82C00BE00E6 /* calculationModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calculationModelTestCase.swift; sourceTree = "<group>"; };
 		861483432677C82C00BE00E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		861483482677C82C00BE00E6 /* CountOnMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountOnMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8614834C2677C82C00BE00E6 /* CountOnMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountOnMeUITests.swift; sourceTree = "<group>"; };
@@ -116,7 +114,6 @@
 		861483402677C82C00BE00E6 /* CountOnMeTests */ = {
 			isa = PBXGroup;
 			children = (
-				861483412677C82C00BE00E6 /* calculationModelTestCase.swift */,
 				8632131526824A4A00CA0814 /* TreatmentModelTestCase.swift */,
 				861483432677C82C00BE00E6 /* Info.plist */,
 			);
@@ -337,7 +334,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8632131626824A4A00CA0814 /* TreatmentModelTestCase.swift in Sources */,
-				861483422677C82C00BE00E6 /* calculationModelTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

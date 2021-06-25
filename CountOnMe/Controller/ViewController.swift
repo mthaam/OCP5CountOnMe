@@ -2,6 +2,7 @@
 //  ViewController.swift
 //  CountOnMe
 //
+// created by vincent.....
 //  Created by JEAN SEBASTIEN BRUNET on 14/6/21.
 //
 
@@ -87,12 +88,6 @@ class ViewController: UIViewController {
         alertViewController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertViewController, animated: true, completion: nil)
     }
-
-//    private func updateTextViewFontSize() {
-//        if textViewLength <= 40 {
-//            textView
-//        }
-//    }
 
 }
 
