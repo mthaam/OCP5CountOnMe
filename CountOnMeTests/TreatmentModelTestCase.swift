@@ -3,6 +3,7 @@
 //  CountOnMeTests
 //
 //  Created by JEAN SEBASTIEN BRUNET on 22/6/21.
+//  Copyright © 2021 Vincent Saluzzo. All rights reserved.
 //
 
 import XCTest

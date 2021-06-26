@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  CountOnMe
 //
-// created by vincent.....
 //  Created by JEAN SEBASTIEN BRUNET on 14/6/21.
+//  Copyright © 2021 Vincent Saluzzo. All rights reserved.
 //
 
 import UIKit

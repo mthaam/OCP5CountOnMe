@@ -3,6 +3,7 @@
 //  CountOnMe
 //
 //  Created by JEAN SEBASTIEN BRUNET on 19/6/21.
+//  Copyright © 2021 Vincent Saluzzo. All rights reserved.
 //
 
 import Foundation
