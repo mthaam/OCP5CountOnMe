@@ -13,7 +13,6 @@ class ViewController: UIViewController {
     // MARK: - Properties
 
     let calculation = TreatmentModel()
-    var textViewLength: Int { textView.text.count}
 
     // MARK: - @IBOutlets
 

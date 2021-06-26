@@ -13,20 +13,12 @@
 		861483322677C82B00BE00E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 861483302677C82B00BE00E6 /* Main.storyboard */; };
 		861483342677C82C00BE00E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 861483332677C82C00BE00E6 /* Assets.xcassets */; };
 		861483372677C82C00BE00E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 861483352677C82C00BE00E6 /* LaunchScreen.storyboard */; };
-		8614834D2677C82C00BE00E6 /* CountOnMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614834C2677C82C00BE00E6 /* CountOnMeUITests.swift */; };
 		8632131626824A4A00CA0814 /* TreatmentModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8632131526824A4A00CA0814 /* TreatmentModelTestCase.swift */; };
 		865CAE1D267E756900A757FE /* TreatmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CAE1C267E756900A757FE /* TreatmentModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		8614833E2677C82C00BE00E6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8614831F2677C82B00BE00E6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 861483262677C82B00BE00E6;
-			remoteInfo = CountOnMe;
-		};
-		861483492677C82C00BE00E6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8614831F2677C82B00BE00E6 /* Project object */;
 			proxyType = 1;
@@ -46,9 +38,6 @@
 		861483382677C82C00BE00E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8614833D2677C82C00BE00E6 /* CountOnMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountOnMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		861483432677C82C00BE00E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		861483482677C82C00BE00E6 /* CountOnMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountOnMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8614834C2677C82C00BE00E6 /* CountOnMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountOnMeUITests.swift; sourceTree = "<group>"; };
-		8614834E2677C82C00BE00E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8632131526824A4A00CA0814 /* TreatmentModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatmentModelTestCase.swift; sourceTree = "<group>"; };
 		865CAE1C267E756900A757FE /* TreatmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatmentModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,13 +51,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8614833A2677C82C00BE00E6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		861483452677C82C00BE00E6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -93,7 +75,6 @@
 			children = (
 				861483272677C82B00BE00E6 /* CountOnMe.app */,
 				8614833D2677C82C00BE00E6 /* CountOnMeTests.xctest */,
-				861483482677C82C00BE00E6 /* CountOnMeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -123,8 +104,6 @@
 		8614834B2677C82C00BE00E6 /* CountOnMeUITests */ = {
 			isa = PBXGroup;
 			children = (
-				8614834C2677C82C00BE00E6 /* CountOnMeUITests.swift */,
-				8614834E2677C82C00BE00E6 /* Info.plist */,
 			);
 			path = CountOnMeUITests;
 			sourceTree = "<group>";
@@ -210,24 +189,6 @@
 			productReference = 8614833D2677C82C00BE00E6 /* CountOnMeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		861483472677C82C00BE00E6 /* CountOnMeUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 861483572677C82C00BE00E6 /* Build configuration list for PBXNativeTarget "CountOnMeUITests" */;
-			buildPhases = (
-				861483442677C82C00BE00E6 /* Sources */,
-				861483452677C82C00BE00E6 /* Frameworks */,
-				861483462677C82C00BE00E6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8614834A2677C82C00BE00E6 /* PBXTargetDependency */,
-			);
-			name = CountOnMeUITests;
-			productName = CountOnMeUITests;
-			productReference = 861483482677C82C00BE00E6 /* CountOnMeUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -241,10 +202,6 @@
 						CreatedOnToolsVersion = 12.5;
 					};
 					8614833C2677C82C00BE00E6 = {
-						CreatedOnToolsVersion = 12.5;
-						TestTargetID = 861483262677C82B00BE00E6;
-					};
-					861483472677C82C00BE00E6 = {
 						CreatedOnToolsVersion = 12.5;
 						TestTargetID = 861483262677C82B00BE00E6;
 					};
@@ -265,7 +222,6 @@
 			targets = (
 				861483262677C82B00BE00E6 /* CountOnMe */,
 				8614833C2677C82C00BE00E6 /* CountOnMeTests */,
-				861483472677C82C00BE00E6 /* CountOnMeUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -282,13 +238,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8614833B2677C82C00BE00E6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		861483462677C82C00BE00E6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -337,14 +286,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		861483442677C82C00BE00E6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8614834D2677C82C00BE00E6 /* CountOnMeUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -352,11 +293,6 @@
 			isa = PBXTargetDependency;
 			target = 861483262677C82B00BE00E6 /* CountOnMe */;
 			targetProxy = 8614833E2677C82C00BE00E6 /* PBXContainerItemProxy */;
-		};
-		8614834A2677C82C00BE00E6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 861483262677C82B00BE00E6 /* CountOnMe */;
-			targetProxy = 861483492677C82C00BE00E6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -578,46 +514,6 @@
 			};
 			name = Release;
 		};
-		861483582677C82C00BE00E6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F8P949KQY4;
-				INFOPLIST_FILE = CountOnMeUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.JSB.CountOnMeUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = CountOnMe;
-			};
-			name = Debug;
-		};
-		861483592677C82C00BE00E6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F8P949KQY4;
-				INFOPLIST_FILE = CountOnMeUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.JSB.CountOnMeUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = CountOnMe;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -644,15 +540,6 @@
 			buildConfigurations = (
 				861483552677C82C00BE00E6 /* Debug */,
 				861483562677C82C00BE00E6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		861483572677C82C00BE00E6 /* Build configuration list for PBXNativeTarget "CountOnMeUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				861483582677C82C00BE00E6 /* Debug */,
-				861483592677C82C00BE00E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

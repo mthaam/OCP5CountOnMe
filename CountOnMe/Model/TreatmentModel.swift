@@ -59,9 +59,6 @@ class TreatmentModel {
     /// This function appends the calculText property
     /// - Parameter numberText : a string value depending on the button touched up .
     func numberButtonTapped(numberText: String) {
-        print(elements)
-        print(inputString)
-//
         if expressionHaveResult || firstCalculation {
             inputString = String()
         }
