@@ -17,6 +17,8 @@ class TreatmentModelTestCase: XCTestCase {
             calculation = TreatmentModel()
         }
 
+    // MARK: - TESTS FOR ADDING / DELETING NUMBERS OR OPERANDS
+
     func testGivenInputStringContainsAnExpression_WhenCallingDeleteLastFunction_ThenTheLastCharacterOfExpressionShouldBeDeleted() {
         calculation.inputString = "3 + 5 / 2"
 
@@ -73,4 +75,73 @@ class TreatmentModelTestCase: XCTestCase {
         XCTAssert(calculation.inputString == "0")
     }
 
-}
+    func testGivenAnExpressionLastCharacterIsAnOperand_WhenTryingtoDeleteLastEntry_ThenTheLastCharacterIsDeleted() {
+        calculation.inputString = "28 / 4 + 2 + 8 - 19 + 126 x 4 / "
+
+        calculation.deleteLastEntry()
+
+        XCTAssertTrue(calculation.inputString == "28 / 4 + 2 + 8 - 19 + 126 x 4 ")
+    }
+
+    // MARK: - TESTS FOR CONTROLING CALCULATION RESULTS AND ERROR MANAGEMENT
+
+    func testGivenAnExpressionContainsOnly2Elements_WhenCalcultating_TheInitialExpressionShouldBeUnchanged() {
+        calculation.inputString = "26 / "
+
+        calculation.calculate()
+
+        XCTAssertTrue(calculation.inputString == "26 / ")
+    }
+
+    func testGivenAnInvalidExpressionIsEntered_WhenCalculating_ThenExpressionShouldBeUnchanged() {
+        calculation.inputString = "26 / 2 + "
+
+        calculation.calculate()
+
+        XCTAssertTrue(calculation.inputString == "26 / 2 + ")
+    }
+
+    func testGivenInputStringContainesADivisionBy0_WhenPressingEqual_ThenInputStringShouldBeAppendedWithError() {
+        calculation.inputString = "26 / 0"
+
+        calculation.calculate()
+
+        XCTAssert(calculation.inputString == "26 / 0 = Error")
+    }
+
+    func testGivenAnExpressionLastSignIsAnOperand_WhenTryingToAddAnotherOperand_ThenInitialExpressionShouldBeUnchanged() {
+        calculation.inputString = "26 / 2 + "
+
+        calculation.divideButtonTapped()
+        calculation.minusButtonTapped()
+        calculation.plusButtonTapped()
+        calculation.multiplyButtonTapped()
+
+        XCTAssertFalse(calculation.inputString == "26 / 2 + / ")
+    }
+
+    func testGivenAnInsufficientExpressionIsEntered_WhenAttemptToCalculate_ThenCalculationShouldBeAbortedAndInputExpressionUnchanged() {
+        calculation.inputString = "26 / "
+
+        calculation.calculate()
+
+        XCTAssertTrue(calculation.inputString == "26 / ")
+    }
+
+    func testGivenAnExpressionWithASinglePrioritaryOperationIsInInputString_WhenCalculated_ThenResultIsCorrectAndPriorityIsConsidered() {
+        calculation.inputString = "28 / 4 + 2"
+
+        calculation.calculate()
+
+        XCTAssertTrue(calculation.inputString == "28 / 4 + 2 = 9")
+    }
+
+    func testGivenAnExpressionWithMultiplePrioritaryOperationIsInInputString_WhenCalculated_ThenResultIsCorrectAndPrioritiesAreConsidered() {
+        calculation.inputString = "28 / 4 + 2 + 8 - 19 + 126 x 4 / 2"
+
+        calculation.calculate()
+
+        XCTAssertTrue(calculation.inputString == "28 / 4 + 2 + 8 - 19 + 126 x 4 / 2 = 250")
+    }
+
+} // end of TreatmentModelTestCase

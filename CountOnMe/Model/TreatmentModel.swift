@@ -129,15 +129,14 @@ class TreatmentModel {
 
     func calculate() {
         print(elements)
-        guard expressionIsCorrect else {
-            sendAlertNotification(message: "Please enter a correct expression!")
-            return
-        }
         guard expressionHaveEnoughElement else {
             sendAlertNotification(message: "Not enough elements to perform calculation.\nTry again!")
             return
         }
-
+        guard expressionIsCorrect else {
+            sendAlertNotification(message: "Please enter a correct expression!")
+            return
+        }
         guard expressionContainsADivisionBy0 == false else {
             sendAlertNotification(message: "Division by 0 is not allowed!")
             inputString.append(" = Error")
