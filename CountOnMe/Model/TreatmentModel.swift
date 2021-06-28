@@ -4,6 +4,7 @@
 //
 //  Created by JEAN SEBASTIEN BRUNET on 19/6/21.
 //  Copyright © 2021 Vincent Saluzzo. All rights reserved.
+// swiftlint:disable line_length
 //
 
 import Foundation
@@ -13,6 +14,8 @@ class TreatmentModel {
 
     // MARK: - PROPERTIES
 
+    /// This property represents the text View to be calcultated.
+    /// It sends a notification every time the value changes, in didSet.
     var inputString: String = "0" {
         didSet {
             NotificationCenter.default.post(name: Notification.Name("updateDisplay"),
@@ -20,43 +23,59 @@ class TreatmentModel {
         }
     }
 
+    /// This calculated property returns an array of strings values
+    /// from the inputString property, whose entries are separated by a blank character.
     private var elements: [String] {
         return inputString.split(separator: " ").map { "\($0)" }
     }
 
+    /// This calculated property determines if there is a priorty operator
     private var priorityOperator: Bool {
         return (elements.firstIndex(of: "x") != nil) || (elements.firstIndex(of: "/") != nil)
     }
 
+    /// This calculated property determines if the expression is correct
     private var expressionIsCorrect: Bool {
         return elements.last != "+" && elements.last != "-" && elements.last != "/" && elements.last != "x"
     }
 
+    /// This calculated property determines if the expression
+    /// to be calculated has enough elements to perform calculation.
     private var expressionHaveEnoughElement: Bool {
         return elements.count >= 3
     }
 
+    /// This calculated property determines if it is possible
+    /// to add an operator when pressing an operator button.
     private var canAddOperator: Bool {
         return elements.last != "+" && elements.last != "-" && elements.last != "/" && elements.last != "x"
     }
 
+    /// This calculated property determines if the expression has
+    /// already been calculated.
     private var expressionHaveResult: Bool {
         return inputString.firstIndex(of: "=") != nil
     }
 
+    /// This calculated property determines if the last character
+    /// of an expression is an operand.
     private var expressionLastCharIsOperand: Bool {
         return inputString.last == "+" || inputString.last == "-" || inputString.last == "/" || inputString.last == "x" || inputString.last == " "
     }
 
+    /// This calculated property determines if the expression
+    /// to be calculated contains a division by 0
+    /// It calls the verify verifyDivisionByZero()
     private var expressionContainsADivisionBy0: Bool {
-         return verifyDivisionByZero2()
+         return verifyDivisionByZero()
     }
 
+    /// This property changes value if it is/isn't the first calculation.
     private var firstCalculation: Bool = true
 
     // MARK: - APPENDING NUMBERS AND OPERANDS FUNCTIONS
 
-    /// This function appends the calculText property
+    /// This function appends the inputString property
     /// - Parameter numberText : a string value depending on the button touched up .
     func numberButtonTapped(numberText: String) {
         if expressionHaveResult || firstCalculation {
@@ -94,6 +113,8 @@ class TreatmentModel {
         addOperand(with: " / ")
     }
 
+    /// This function appends the inputString property
+    /// - Parameter operand : a string value depending on the button touched up .
     private func addOperand(with operand: String) {
         if canAddOperator && !firstCalculation {
             operandSignTapped(operand: operand)
@@ -117,6 +138,8 @@ class TreatmentModel {
         inputString = "0"
     }
 
+    /// This function deletes last character of InputString,
+    /// or last 2 characters if it is an operand.
     func deleteLastEntry() {
         guard inputString.count >= 1 else { return }
         if expressionLastCharIsOperand {
@@ -128,6 +151,9 @@ class TreatmentModel {
 
     // MARK: - MAIN CALCULATION FUNCTION
 
+    /// This function is the main calculation function.
+    /// It verifies the expression is correct, have enought
+    /// elements and doesn't contains a division by 0.
     func calculate() {
         guard expressionHaveEnoughElement else {
             sendAlertNotification(message: "Not enough elements to perform calculation.\nTry again!")
@@ -154,6 +180,9 @@ class TreatmentModel {
 
     // MARK: - PRIVATE FUNCTIONS
 
+    /// This function returns a string Array.
+    /// It resolves priority calculations while there are any.
+    /// -  Parameter expression : a string array received.
     private func resolvePriorityCalculations(in expression: [String]) -> [String] {
         var temporaryExpression = expression
 
@@ -180,6 +209,9 @@ class TreatmentModel {
         return temporaryExpression
     }
 
+    /// This function returns a string Array.
+    /// It resolves non priority calculations while there are any.
+    /// -  Parameter expression : a string array received.
     private func resolveNonPriorityCalculations(in dynamicResolutionArray: inout [String]) {
         while dynamicResolutionArray.count > 1 {
             let leftOperandStrComma: String = dynamicResolutionArray[0]
@@ -210,6 +242,9 @@ class TreatmentModel {
         }
     }
 
+    /// This function returns a string value.
+    /// It converts a received value into a string value.
+    /// - Parameter currentResult : a Double value
     private func doubleToInteger(from currentResult: Double) -> String {
         let doubleAsString = NumberFormatter.localizedString(from: (NSNumber(value: currentResult)), number: .decimal)
         return doubleAsString
@@ -222,7 +257,10 @@ class TreatmentModel {
         NotificationCenter.default.post(name: name, object: nil, userInfo: ["message": message])
     }
 
-    private func verifyDivisionByZero2() -> Bool {
+    /// This function receives returns a boolean value.
+    /// It  iterates over the elements array
+    /// to verify if there is a division  by 0.
+    private func verifyDivisionByZero() -> Bool {
         var thereIsADivisionBy0 = false
         var count = 0
         for divide in elements {
