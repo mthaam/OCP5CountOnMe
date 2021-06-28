@@ -37,7 +37,7 @@ class TreatmentModelTestCase: XCTestCase {
     }
 
     func testGivenInputStringHasAlreadyOneCharacter_WhenAddingMinusSign_ThenCalculTexPropertyCOntainsTheMinusSign() {
-        calculation.inputString = "1"
+        calculation.numberButtonTapped(numberText: "1")
 
         calculation.minusButtonTapped()
 
@@ -45,7 +45,7 @@ class TreatmentModelTestCase: XCTestCase {
     }
 
     func testGivenInputStringHasAlreadyOneCharacter_WhenAddingPlusSign_ThenCalculTexPropertyCOntainsThePlusSign() {
-        calculation.inputString = "1"
+        calculation.numberButtonTapped(numberText: "1")
 
         calculation.plusButtonTapped()
 
@@ -82,6 +82,14 @@ class TreatmentModelTestCase: XCTestCase {
         calculation.deleteLastEntry()
 
         XCTAssertTrue(calculation.inputString == "28 / 4 + 2 + 8 - 19 + 126 x 4 ")
+    }
+
+    func testGivenThisIsFirstCalculation_WhenStartingWithNegativeNumberAndAddingNumbers_ThenInputStringShouldStartWithAMinus() {
+        calculation.minusButtonTapped()
+        calculation.numberButtonTapped(numberText: "2")
+        calculation.numberButtonTapped(numberText: "3")
+
+        XCTAssertTrue(calculation.inputString == "-23")
     }
 
     // MARK: - TESTS FOR CONTROLING CALCULATION RESULTS AND ERROR MANAGEMENT

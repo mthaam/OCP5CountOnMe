@@ -66,25 +66,19 @@ class TreatmentModel {
         inputString.append(numberText)
     }
 
-    /// This function appends the inputText property
-    /// - Parameter operand : a string value depending on the button touched up .
-    private func operandSignTapped(operand: String) {
-        inputString.append("\(operand)")
-    }
-
     /// This function appends the inputText property with a + character
     func plusButtonTapped() {
-        if canAddOperator {
-            operandSignTapped(operand: " + ")
-        } else {
-            sendAlertNotification(message: "You already typed an Operand")
-        }
+        addOperand(with: " + ")
     }
 
     /// This function appends the inputText property with a - character
     func minusButtonTapped() {
-        if canAddOperator {
+        if canAddOperator && !firstCalculation {
             operandSignTapped(operand: " - ")
+        } else if firstCalculation {
+            inputString = String()
+            firstCalculation = false
+            operandSignTapped(operand: "-")
         } else {
             sendAlertNotification(message: "You already typed an Operand")
         }
@@ -92,20 +86,29 @@ class TreatmentModel {
 
     /// This function appends the inputText property with a x character
     func multiplyButtonTapped() {
-        if canAddOperator {
-            operandSignTapped(operand: " x ")
+        addOperand(with: " x ")
+    }
+
+    /// This function appends the inputText property with a / character
+    func divideButtonTapped() {
+        addOperand(with: " / ")
+    }
+
+    private func addOperand(with operand: String) {
+        if canAddOperator && !firstCalculation {
+            operandSignTapped(operand: operand)
+        } else if firstCalculation {
+            firstCalculation = false
+            operandSignTapped(operand: operand)
         } else {
             sendAlertNotification(message: "You already typed an Operand")
         }
     }
 
-    /// This function appends the inputText property with a / character
-    func divideButtonTapped() {
-        if canAddOperator {
-            operandSignTapped(operand: " / ")
-        } else {
-            sendAlertNotification(message: "You already typed an Operand")
-        }
+    /// This function appends the inputText property
+    /// - Parameter operand : a string value depending on the button touched up .
+    private func operandSignTapped(operand: String) {
+        inputString.append("\(operand)")
     }
 
     /// This function clears the inputText property displaying calculation result
@@ -145,13 +148,9 @@ class TreatmentModel {
         if priorityOperator {
             dynamicResolutionArray = resolvePriorityCalculations(in: dynamicResolutionArray)
         }
-
         resolveNonPriorityCalculations(in: &dynamicResolutionArray)
-
         guard let currentResult = dynamicResolutionArray.first else { return }
-
         inputString.append(" = \(currentResult)")
-
     }
 
     // MARK: - PRIVATE FUNCTIONS
@@ -174,14 +173,11 @@ class TreatmentModel {
                 } else {
                     currentResult = leftNumber / rightNumber
                 }
-
                 temporaryExpression[indexTempExpression - 1] = String(doubleToInteger(from: currentResult))
                 temporaryExpression.remove(at: indexTempExpression + 1)
                 temporaryExpression.remove(at: indexTempExpression)
-
             }
         }
-
         return temporaryExpression
     }
 
@@ -210,7 +206,6 @@ class TreatmentModel {
                 }
             default: break
             }
-
             dynamicResolutionArray = Array(dynamicResolutionArray.dropFirst(3))
             dynamicResolutionArray.insert("\(doubleToInteger(from: currentResult))", at: 0)
         }
