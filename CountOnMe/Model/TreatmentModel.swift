@@ -129,7 +129,6 @@ class TreatmentModel {
     // MARK: - MAIN CALCULATION FUNCTION
 
     func calculate() {
-        print(elements)
         guard expressionHaveEnoughElement else {
             sendAlertNotification(message: "Not enough elements to perform calculation.\nTry again!")
             return
