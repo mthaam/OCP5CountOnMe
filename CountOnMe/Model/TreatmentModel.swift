@@ -4,13 +4,13 @@
 //
 //  Created by JEAN SEBASTIEN BRUNET on 19/6/21.
 //  Copyright © 2021 Vincent Saluzzo. All rights reserved.
-// swiftlint:disable line_length
+/// swiftlint:disable line_length
 //
 
 import Foundation
 
 /// This class analyses the input calculation string
-class TreatmentModel {
+final class TreatmentModel {
 
     // MARK: - PROPERTIES
 
@@ -243,10 +243,15 @@ class TreatmentModel {
     }
 
     /// This function returns a string value.
-    /// It converts a received value into a string value.
+    /// It converts a received value into a string value after
+    /// the , were removed.
     /// - Parameter currentResult : a Double value
     private func doubleToInteger(from currentResult: Double) -> String {
-        let doubleAsString = NumberFormatter.localizedString(from: (NSNumber(value: currentResult)), number: .decimal)
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.usesGroupingSeparator = false
+        formatter.maximumFractionDigits = 5
+        let doubleAsString =  formatter.string(from: NSNumber(value: currentResult))!
         return doubleAsString
     }
 
