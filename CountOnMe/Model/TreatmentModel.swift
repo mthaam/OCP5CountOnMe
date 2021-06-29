@@ -4,7 +4,7 @@
 //
 //  Created by JEAN SEBASTIEN BRUNET on 19/6/21.
 //  Copyright © 2021 Vincent Saluzzo. All rights reserved.
-/// swiftlint:disable line_length
+// swiftlint:disable line_length
 //
 
 import Foundation
@@ -16,7 +16,7 @@ final class TreatmentModel {
 
     /// This property represents the text View to be calcultated.
     /// It sends a notification every time the value changes, in didSet.
-    var inputString: String = "0" {
+    var inputString: String = "1 + 1 = 2" {
         didSet {
             NotificationCenter.default.post(name: Notification.Name("updateDisplay"),
                                             object: nil, userInfo: ["updateDisplay": inputString])
@@ -70,18 +70,14 @@ final class TreatmentModel {
          return verifyDivisionByZero()
     }
 
-    /// This property changes value if it is/isn't the first calculation.
-    private var firstCalculation: Bool = true
-
     // MARK: - APPENDING NUMBERS AND OPERANDS FUNCTIONS
 
     /// This function appends the inputString property
     /// - Parameter numberText : a string value depending on the button touched up .
     func numberButtonTapped(numberText: String) {
-        if expressionHaveResult || firstCalculation {
+        if expressionHaveResult {
             inputString = String()
         }
-        firstCalculation = false
         inputString.append(numberText)
     }
 
@@ -92,15 +88,7 @@ final class TreatmentModel {
 
     /// This function appends the inputText property with a - character
     func minusButtonTapped() {
-        if canAddOperator && !firstCalculation {
-            operandSignTapped(operand: " - ")
-        } else if firstCalculation {
-            inputString = String()
-            firstCalculation = false
-            operandSignTapped(operand: "-")
-        } else {
-            sendAlertNotification(message: "You already typed an Operand")
-        }
+        addOperand(with: " - ")
     }
 
     /// This function appends the inputText property with a x character
@@ -116,26 +104,18 @@ final class TreatmentModel {
     /// This function appends the inputString property
     /// - Parameter operand : a string value depending on the button touched up .
     private func addOperand(with operand: String) {
-        if canAddOperator && !firstCalculation {
-            operandSignTapped(operand: operand)
-        } else if firstCalculation {
-            firstCalculation = false
-            operandSignTapped(operand: operand)
+        if expressionHaveResult || inputString == "" {
+            sendAlertNotification(message: "Start your calculation with a number.")
+        } else if canAddOperator {
+            inputString.append("\(operand)")
         } else {
             sendAlertNotification(message: "You already typed an Operand")
         }
     }
 
-    /// This function appends the inputText property
-    /// - Parameter operand : a string value depending on the button touched up .
-    private func operandSignTapped(operand: String) {
-        inputString.append("\(operand)")
-    }
-
     /// This function clears the inputText property displaying calculation result
     func clear() {
-        firstCalculation = true
-        inputString = "0"
+        inputString = String()
     }
 
     /// This function deletes last character of InputString,

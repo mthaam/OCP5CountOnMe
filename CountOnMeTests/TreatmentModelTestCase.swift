@@ -28,7 +28,7 @@ class TreatmentModelTestCase: XCTestCase {
 
         XCTAssert(calculation.inputString == "3 + 5 / ")
     }
-//
+
     func testGivenInputStringHasAlreadyOneCharacter_WhenAddingANumber_ThenCalculTexPropertyCOntainsTheAddedNumber() {
         calculation.numberButtonTapped(numberText: "1")
 
@@ -74,7 +74,7 @@ class TreatmentModelTestCase: XCTestCase {
 
         calculation.clear()
 
-        XCTAssert(calculation.inputString == "0")
+        XCTAssert(calculation.inputString == "")
     }
 
     func testGivenAnExpressionLastCharacterIsAnOperand_WhenTryingtoDeleteLastEntry_ThenTheLastCharacterIsDeleted() {
@@ -85,12 +85,12 @@ class TreatmentModelTestCase: XCTestCase {
         XCTAssertTrue(calculation.inputString == "28 / 4 + 2 + 8 - 19 + 126 x 4 ")
     }
 
-    func testGivenThisIsFirstCalculation_WhenStartingWithNegativeNumberAndAddingNumbers_ThenInputStringShouldStartWithAMinus() {
-        calculation.minusButtonTapped()
-        calculation.numberButtonTapped(numberText: "2")
-        calculation.numberButtonTapped(numberText: "3")
+    func testGivenACalculationHasBeenPreviouslyMade_WhenStartingANewCalculationWithPressingAnOperator_ThenInputStringShouldBeUnchanged() {
+        calculation.inputString = "4 x 7 = 28"
 
-        XCTAssertTrue(calculation.inputString == "-23")
+        calculation.minusButtonTapped()
+
+        XCTAssertTrue(calculation.inputString == "4 x 7 = 28")
     }
 
     // MARK: - TESTS FOR CONTROLING CALCULATION RESULTS AND ERROR MANAGEMENT
