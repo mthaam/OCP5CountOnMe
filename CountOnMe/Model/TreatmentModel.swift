@@ -109,7 +109,7 @@ final class TreatmentModel {
         } else if canAddOperator {
             inputString.append("\(operand)")
         } else {
-            sendAlertNotification(message: "You already typed an Operand")
+            sendAlertNotification(message: "You already typed an Operator")
         }
     }
 
