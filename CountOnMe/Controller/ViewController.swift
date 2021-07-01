@@ -17,7 +17,6 @@ class ViewController: UIViewController {
 
     // MARK: - @IBOutlets
 
-    @IBOutlet var numberButtons: [UIButton]!
     @IBOutlet weak var textView: UITextView!
 
     // MARK: - Lifecycle
