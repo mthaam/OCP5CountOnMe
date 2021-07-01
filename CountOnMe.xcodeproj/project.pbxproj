@@ -65,7 +65,6 @@
 			children = (
 				861483292677C82B00BE00E6 /* CountOnMe */,
 				861483402677C82C00BE00E6 /* CountOnMeTests */,
-				8614834B2677C82C00BE00E6 /* CountOnMeUITests */,
 				861483282677C82B00BE00E6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,13 +98,6 @@
 				861483432677C82C00BE00E6 /* Info.plist */,
 			);
 			path = CountOnMeTests;
-			sourceTree = "<group>";
-		};
-		8614834B2677C82C00BE00E6 /* CountOnMeUITests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CountOnMeUITests;
 			sourceTree = "<group>";
 		};
 		8614835A2677D39000BE00E6 /* View */ = {
