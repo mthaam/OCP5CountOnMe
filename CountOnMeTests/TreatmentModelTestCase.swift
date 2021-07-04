@@ -154,4 +154,12 @@ class TreatmentModelTestCase: XCTestCase {
         XCTAssertTrue(calculation.inputString == "28 / 4 + 2 + 8 - 19 + 126 x 4 / 2 = 250")
     }
 
+    func testGivenACalculationHasBeenMade_WhenPressingEqual_ThenInputStringIsUnChanged() {
+        calculation.inputString = "1 + 1 = 2"
+
+        calculation.calculate()
+
+        XCTAssert(calculation.inputString == "1 + 1 = 2")
+    }
+
 } // end of TreatmentModelTestCase

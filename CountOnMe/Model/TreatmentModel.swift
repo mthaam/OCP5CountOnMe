@@ -143,6 +143,10 @@ final class TreatmentModel {
             sendAlertNotification(message: "Please enter a correct expression!")
             return
         }
+        guard expressionHaveResult == false else {
+            sendAlertNotification(message: "You must touch AC before starting a new calculation")
+            return
+        }
         guard expressionContainsADivisionBy0 == false else {
             sendAlertNotification(message: "Division by 0 is not allowed!")
             inputString.append(" = Error")
