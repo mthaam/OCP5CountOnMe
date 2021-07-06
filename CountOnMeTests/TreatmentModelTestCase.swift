@@ -82,7 +82,7 @@ class TreatmentModelTestCase: XCTestCase {
 
         calculation.deleteLastEntry()
 
-        XCTAssertTrue(calculation.inputString == "28 / 4 + 2 + 8 - 19 + 126 x 4 ")
+        XCTAssertTrue(calculation.inputString == "28 / 4 + 2 + 8 - 19 + 126 x 4")
     }
 
     func testGivenACalculationHasBeenPreviouslyMade_WhenStartingANewCalculationWithPressingAnOperator_ThenInputStringShouldBeUnchanged() {

@@ -123,7 +123,7 @@ final class TreatmentModel {
     func deleteLastEntry() {
         guard inputString.count >= 1 else { return }
         if expressionLastCharIsOperand {
-            inputString.removeLast(2)
+            inputString.removeLast(3)
         } else {
             inputString.removeLast()
         }
